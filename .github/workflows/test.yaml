@@ -1,0 +1,26 @@
+name: Modify Pull Request Title
+
+on:
+  pull_request:
+    types:
+      - opened
+
+jobs:
+  modify_title:
+    runs-on: ubuntu-latest
+  
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      
+      - name: Update Pull Request title
+        run: |
+          # 通过 GitHub REST API 获取 Pull Request 信息，并修改标题
+          pull_request_number=${{ github.event.pull_request.number }}
+          updated_title="New Title"  # 设置你想要修改成的标题
+          token=${{ secrets.GITHUB_TOKEN }}
+          curl -X PATCH \
+            -H "Authorization: Bearer $token" \
+            -H "Accept: application/vnd.github.v3+json" \
+            "https://api.github.com/repos/${{ github.repository }}/pulls/$pull_request_number" \
+            -d '{ "title": "'"$updated_title"'" }'
