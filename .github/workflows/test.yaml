@@ -12,12 +12,26 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      
+
+      - name: Comment on Pull Request
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          pull_request_number=${{ github.event.pull_request.number }}
+          current_title="${{ github.event.pull_request.title }}"
+          message_body="The origin title of this PR is: '$current_title'. GitHub Action is checking it..."
+          curl -H "Authorization: Bearer ${GITHUB_TOKEN}" \
+            -H "Content-Type: application/json" \
+            -X POST \
+            -d '{"body":"'"$message_body"'"}' \
+            "https://api.github.com/repos/${{ github.repository }}/issues/${pull_request_number}}/comments"
+
       - name: Update Pull Request title
         run: |
           pull_request_number=${{ github.event.pull_request.number }}
           current_title="${{ github.event.pull_request.title }}"
-          updated_title="[Pull Request] $current_title"
+          
+          updated_title=$(python3 "./.github/pr_autorename.py" "$current_title")
           token=${{ secrets.GITHUB_TOKEN }}
           curl -X PATCH \
             -H "Authorization: Bearer $token" \
