@@ -1,4 +1,4 @@
-name: Modify Pull Request Title
+name: Check Pull Request Title
 
 on:
   pull_request:
@@ -6,7 +6,7 @@ on:
       - opened
 
 jobs:
-  modify_title:
+  check_title:
     runs-on: ubuntu-latest
   
     steps:
