@@ -15,9 +15,9 @@ jobs:
       
       - name: Update Pull Request title
         run: |
-          # 通过 GitHub REST API 获取 Pull Request 信息，并修改标题
           pull_request_number=${{ github.event.pull_request.number }}
-          updated_title="New Title"  # 设置你想要修改成的标题
+          current_title="${{ github.event.pull_request.title }}"
+          updated_title="[Pull Request] $current_title"
           token=${{ secrets.GITHUB_TOKEN }}
           curl -X PATCH \
             -H "Authorization: Bearer $token" \
