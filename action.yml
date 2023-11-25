@@ -1,0 +1,6 @@
+name: "Setup XXX"
+description: "TEST"
+author: "ChenPi12"
+runs:
+  using: 'node20'
+  main: 'index.js'
