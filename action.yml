@@ -102,8 +102,15 @@ runs:
         if (-not $tag) {
           $tag=$(git rev-parse --abbrev-ref HEAD)
         }
+        $reponame=$env:GITHUB_REPOSITORY
+        try {
+          $reponame=$reponame.Split("/"").Get(1)
+        }
+        catch {
+          Write-Host "Invalid repository name: '$reponame'." -ForegroundColor Red
+        }
         Write-Output "tag=$tag" >> $env:GITHUB_OUTPUT
-        Write-Output "reponame=$env:GITHUB_REPOSITORY" >> $env:GITHUB_OUTPUT
+        Write-Output "reponame=$reponame" >> $env:GITHUB_OUTPUT
         Write-Output "pkgname=$reponame-$tag" >> $env:GITHUB_OUTPUT
         Write-Output "srcdir=$PWD" >> $env:GITHUB_OUTPUT
       shell: pwsh
