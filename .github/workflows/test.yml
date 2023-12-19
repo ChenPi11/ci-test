@@ -4,14 +4,9 @@ on: push
 
 jobs:
   test:
-    runs-on: windows-latest
+    runs-on: macos-latest
 
     steps:
       - name: Test
         run: |
-          choco install 7zip
-          choco install mingw
-          
-          where.exe tar
-          where.exe xz
-          where.exe 7z
+          which tar
