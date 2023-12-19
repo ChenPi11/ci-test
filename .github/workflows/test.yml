@@ -1,6 +1,9 @@
 name: Test
 
-on: push
+on:
+  release:
+    types: [published]
+  push:
 
 jobs:
   test:
