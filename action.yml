@@ -2,5 +2,7 @@ name: "Setup XXX"
 description: "TEST"
 author: "ChenPi12"
 runs:
-  using: 'node20'
-  main: 'index.js'
+  using: composite
+  steps:
+    - name: Test
+      run: echo ${{ matrix.os }}
