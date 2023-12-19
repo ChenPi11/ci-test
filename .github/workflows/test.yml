@@ -12,6 +12,7 @@ jobs:
         uses: ChenPi11/ci-test@main
       - name: Test
         run: |
-          ${{steps.setup.outputs.pkgname}}
-          
-
+          echo "${{steps.setup.outputs.tag}}"
+          echo "${{steps.setup.outputs.reponame}}"
+          echo "${{steps.setup.outputs.pkgname}}"
+          echo "${{steps.setup.outputs.srcdir}}"
