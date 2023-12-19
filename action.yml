@@ -6,22 +6,70 @@ author: The C++ Plus Project
 runs:
   using: composite
   steps:
-    - name: 📁 Setup p7zip
+    # Setup compress utilities: p7zip, gzip, tar, xz, zip.
+    - name: 📁 Setup compress utilities. (Ubuntu)
       if: runner.os == 'Linux'
       run: |
-        sudo apt-get install p7zip-full
+        sudo apt-get update
+        sudo apt-get install p7zip-full gzip tar xz-utils zip -y
       shell: pwsh
 
-    - name: 📁 Setup p7zip
+    - name: 📁 Setup compress utilities. (Windows)
       if: runner.os == 'Windows'
       run: |
-        choco install p7zip
+        choco install 7zip.portable gzip zip --yes
       shell: pwsh
 
-    - name: 📁 Setup p7zip
+    - name: 📁 Setup compress utilities. (macOS)
       if: runner.os == 'macOS'
       run: |
-        brew install p7zip
+        brew install p7zip gzip xz zip 
+      shell: pwsh
+
+    # Setup other utilities: curl, wget.
+    - name: 📁 Setup other utilities. (Ubuntu)
+      if: runner.os == 'Linux'
+      run: |
+        sudo apt-get update
+        sudo apt-get install curl wget -y
+      shell: pwsh
+    
+    - name: 📁 Setup other utilities. (Windows)
+      if: runner.os == 'Windows'
+      run: |
+        choco install curl wget --yes
+      shell: pwsh
+
+    - name: 📁 Setup other utilities. (macOS)
+      if: runner.os == 'macOS'
+      run: |
+        brew install curl wget
+      shell: pwsh
+
+    # Setup Python.
+    - name: 📁 Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+        cache: 'pip'
+
+    # Setup original C/C++ toolchain: llvm, clang, cmake, ninja.
+    - name: 📁 Setup C/C++ toolchain. (Ubuntu)
+      if: runner.os == 'Linux'
+      run: |
+        sudo apt-get install llvm clang cmake ninja-build -y
+      shell: pwsh
+
+    - name: 📁 Setup C/C++ toolchain. (Windows)
+      if: runner.os == 'Windows'
+      run: |
+        choco install llvm ninja cmake --yes
+      shell: pwsh
+
+    - name: 📁 Setup C/C++ toolchain. (macOS)
+      if: runner.os == 'macOS'
+      run: |
+        brew install llvm ninja cmake
       shell: pwsh
 
 branding:
