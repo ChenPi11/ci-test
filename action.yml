@@ -1,9 +1,29 @@
-name: "Setup XXX"
-description: "TEST"
-author: "ChenPi12"
+name: 📁 Setup C++ Plus repository utilities.
+
+description: Set up cppp-repoutil and add the command-line tools to the PATH.
+author: The C++ Plus Project
+
 runs:
   using: composite
   steps:
-    - name: Test
-      run: echo "${{ runner.os }}"
+    - name: 📁 Setup p7zip
+      if: ${{ matrix.os == "Linux" }}
+      run: |
+        sudo apt-get install p7zip-full
       shell: pwsh
+
+    - name: 📁 Setup p7zip
+      if: ${{ matrix.os == "Windows" }}
+      run: |
+        choco install p7zip
+      shell: pwsh
+
+    - name: 📁 Setup p7zip
+      if: ${{ matrix.os == "macOS" }}
+      run: |
+        brew install p7zip
+      shell: pwsh
+
+branding:
+  icon: 'code'
+  color: 'blue'
