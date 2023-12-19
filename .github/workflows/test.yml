@@ -7,6 +7,22 @@ jobs:
     runs-on: macos-latest
 
     steps:
+      - name: Setup
+        uses: ChenPi11/ci-test@main
       - name: Test
         run: |
-          which tar
+          7z --version
+          gzip --version
+          tar --version
+          xz --version
+          zip --version
+          curl --version
+          wget --version
+          python3 --version
+          pip3 --version
+          python --version
+          pip --version
+          clang --version
+          cmake --version
+          ninja --version
+
