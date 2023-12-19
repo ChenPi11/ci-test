@@ -15,4 +15,4 @@ jobs:
         uses: ChenPi11/cppp-repoutils@main
       - name: Test
         run: |
-          cppp-repoutils --version 
+          cppp-repoutils --version
