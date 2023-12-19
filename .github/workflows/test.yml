@@ -8,21 +8,10 @@ jobs:
 
     steps:
       - name: Setup
+        id: setup
         uses: ChenPi11/ci-test@main
       - name: Test
         run: |
-          7z --help
-          gzip --version
-          tar --version
-          xz --version
-          zip --version
-          curl --version
-          wget --version
-          python3 --version
-          pip3 --version
-          python --version
-          pip --version
-          clang --version
-          cmake --version
-          ninja --version
+          ${{steps.setup.outputs.pkgname}}
+          
 
