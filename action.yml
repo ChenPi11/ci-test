@@ -7,19 +7,19 @@ runs:
   using: composite
   steps:
     - name: 📁 Setup p7zip
-      if: matrix.os == "Linux"
+      if: matrix.os == 'Linux'
       run: |
         sudo apt-get install p7zip-full
       shell: pwsh
 
     - name: 📁 Setup p7zip
-      if: matrix.os == "Windows"
+      if: matrix.os == 'Windows'
       run: |
         choco install p7zip
       shell: pwsh
 
     - name: 📁 Setup p7zip
-      if: matrix.os == "macOS"
+      if: matrix.os == 'macOS'
       run: |
         brew install p7zip
       shell: pwsh
