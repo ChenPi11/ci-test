@@ -3,6 +3,20 @@ name: 📁 Setup C++ Plus repository utilities.
 description: Set up cppp-repoutil and add the command-line tools to the PATH.
 author: The C++ Plus Project
 
+outputs:
+  tag:
+    description: The tag of the repository for release build, if we are not in a release build, the tag will set to the current branch name.
+    value: ${{ steps.info.outputs.tag }}
+  reponame:
+    description: The name of the repository.
+    value: ${{ steps.info.outputs.reponame }}
+  pkgname:
+    description: The name of the package.
+    value: ${{ steps.info.outputs.pkgname }}
+  srcdir:
+    description: Source directory of the repository.
+    value: ${{ steps.info.outputs.srcdir }}
+
 runs:
   using: composite
   steps:
@@ -33,7 +47,7 @@ runs:
         sudo apt-get update
         sudo apt-get install curl wget -y
       shell: pwsh
-    
+
     - name: 📁 Setup other utilities. (Windows)
       if: runner.os == 'Windows'
       run: |
@@ -47,10 +61,10 @@ runs:
       shell: pwsh
 
     # Setup Python.
-    - name: 📁 Setup Python
+    - name: 📁 Setup Python.
       uses: actions/setup-python@v5
       with:
-        python-version: '3.12'
+        python-version: "3.12"
 
     # Setup original C/C++ toolchain: llvm, clang, cmake, ninja.
     - name: 📁 Setup C/C++ toolchain. (Ubuntu)
@@ -71,6 +85,22 @@ runs:
         brew install llvm ninja cmake
       shell: pwsh
 
-branding:
-  icon: 'code'
-  color: 'blue'
+    - name: 🧳 Setup MSVC. (Windows)
+      if: runner.os == 'Windows'
+      uses: microsoft/setup-msbuild@v1
+
+    - name: 🧳 Setup XCode. (macOS)
+      if: runner.os == 'macOS'
+      uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: latest-stable
+
+    - name: 🏷️ Get repo infomation.
+      id: info
+      run: |
+        $tag="$env:GITHUB_REF_NAME"
+        echo "tag=$tag" >> $env:GITHUB_OUTPUT
+        echo "reponame=$env:GITHUB_REPOSITORY" >> $env:GITHUB_OUTPUT
+        echo "pkgname=$reponame-$tag" >> $env:GITHUB_OUTPUT
+        echo "srcdir=$PWD" >> $env:GITHUB_OUTPUT
+      shell: pwsh
