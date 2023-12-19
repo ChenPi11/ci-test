@@ -11,7 +11,7 @@ jobs:
         uses: ChenPi11/ci-test@main
       - name: Test
         run: |
-          7z --version
+          7z --help
           gzip --version
           tar --version
           xz --version
