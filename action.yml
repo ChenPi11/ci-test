@@ -95,6 +95,7 @@ runs:
       with:
         xcode-version: latest-stable
 
+    # Get repository infomation.
     - name: 🏷️ Get repository infomation.
       id: info
       run: |
@@ -113,4 +114,11 @@ runs:
         Write-Output "reponame=$reponame" >> $env:GITHUB_OUTPUT
         Write-Output "pkgname=$reponame-$tag" >> $env:GITHUB_OUTPUT
         Write-Output "srcdir=$PWD" >> $env:GITHUB_OUTPUT
+      shell: pwsh
+
+    # Setup cppp-repoutils.
+    - name: 📁 Setup cppp-repoutils.
+      run: |
+        pwsh -file $GITHUB_ACTION_PATH/dist-tools/build.ps1
+        Move-Item -Path "$GITHUB_ACTION_PATH/dist/bin" -Destination "~"
       shell: pwsh
