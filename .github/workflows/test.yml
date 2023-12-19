@@ -1,0 +1,11 @@
+name: Test
+
+on: push
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Test
+        uses: ChenPi11/ci-test@main
