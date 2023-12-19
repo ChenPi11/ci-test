@@ -99,8 +99,11 @@ runs:
       id: info
       run: |
         $tag="$env:GITHUB_REF_NAME"
-        echo "tag=$tag" >> $env:GITHUB_OUTPUT
-        echo "reponame=$env:GITHUB_REPOSITORY" >> $env:GITHUB_OUTPUT
-        echo "pkgname=$reponame-$tag" >> $env:GITHUB_OUTPUT
-        echo "srcdir=$PWD" >> $env:GITHUB_OUTPUT
+        if (-not $tag) {
+          $tag=$(git rev-parse --abbrev-ref HEAD)
+        }
+        Write-Output "tag=$tag" >> $env:GITHUB_OUTPUT
+        Write-Output "reponame=$env:GITHUB_REPOSITORY" >> $env:GITHUB_OUTPUT
+        Write-Output "pkgname=$reponame-$tag" >> $env:GITHUB_OUTPUT
+        Write-Output "srcdir=$PWD" >> $env:GITHUB_OUTPUT
       shell: pwsh
