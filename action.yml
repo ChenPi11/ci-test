@@ -95,7 +95,7 @@ runs:
       with:
         xcode-version: latest-stable
 
-    - name: 🏷️ Get repo infomation.
+    - name: 🏷️ Get repository infomation.
       id: info
       run: |
         $tag="$env:GITHUB_REF_NAME"
@@ -104,7 +104,7 @@ runs:
         }
         $reponame=$env:GITHUB_REPOSITORY
         try {
-          $reponame=$reponame.Split("/"").Get(1)
+          $reponame=$reponame.Split("/").Get(1)
         }
         catch {
           Write-Host "Invalid repository name: '$reponame'." -ForegroundColor Red
