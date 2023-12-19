@@ -8,10 +8,9 @@ jobs:
 
     steps:
       - name: Test
-        uses: ChenPi11/ci-test@main
-      - name: Test
         run: |
           choco install 7zip
           where 7z
           choco install mingw
           where tar
+          where xz
