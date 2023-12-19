@@ -10,9 +10,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      #- name: Setup
-      #  id: setup
-      #  uses: ChenPi11/ci-test@main
+      - name: Setup
+        id: setup
+        uses: ChenPi11/cppp-repoutils@main
       - name: Test
         run: |
-          echo $PATH
+          cppp-repoutils --version
