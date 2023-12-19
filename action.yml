@@ -6,3 +6,4 @@ runs:
   steps:
     - name: Test
       run: echo ${{ matrix.os }}
+      shell: pwsh
