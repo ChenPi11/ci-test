@@ -10,7 +10,8 @@ jobs:
       - name: Test
         run: |
           choco install 7zip
-          where 7z
           choco install mingw
-          where tar
-          where xz
+          
+          where.exe tar
+          where.exe xz
+          where.exe 7z
