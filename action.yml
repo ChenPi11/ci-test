@@ -23,7 +23,7 @@ runs:
     - name: 📁 Setup compress utilities. (macOS)
       if: runner.os == 'macOS'
       run: |
-        brew install p7zip gzip xz zip 
+        brew install p7zip gzip xz zip
       shell: pwsh
 
     # Setup other utilities: curl, wget.
@@ -51,7 +51,6 @@ runs:
       uses: actions/setup-python@v5
       with:
         python-version: '3.12'
-        cache: 'pip'
 
     # Setup original C/C++ toolchain: llvm, clang, cmake, ninja.
     - name: 📁 Setup C/C++ toolchain. (Ubuntu)
