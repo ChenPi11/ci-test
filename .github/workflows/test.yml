@@ -7,12 +7,18 @@ on:
 
 jobs:
   test:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
-      - name: Setup
-        id: setup
-        uses: ChenPi11/cppp-repoutils@main
+      #- name: Setup
+      #  id: setup
+      #  uses: ChenPi11/cppp-repoutils@main
       - name: Test
         run: |
-          cppp-repoutils --version 
+          wget "https://storage.googleapis.com/android-build/builds/aosp-main-linux-aosp_cf_x86_64_phone-trunk_staging-userdebug_coverage/11569326/3283b8f5bf7d37bb1bd4ce385bff2702fb78c75ee8d95d056faf4847813c612c/cvd-host_package.tar.gz?GoogleAccessId=gcs-sign@android-builds-project.google.com.iam.gserviceaccount.com&Expires=1710339913&Signature=Wmp/eSYdxv6L3CuxEdrlHVWXHVzDHHv6dTI%2BCoGn2xrAiBmc9PX6hTk6iFRreHnI94nh5zcGpYBB5wNW8W1uF8q69t8Zkq%2Bn/vfSCyGGbjuAx5/elymNh73iAeWV0G4kaNRHSb2OHWqozNcVwivkatOvd%2BEdYebOQEUGLgxOS4liNo/4GskjgJQ5fPlvc58/e8%2B7yLuIUYnqdsjzU2opbRAmjzu2CaezUAvBSj9pUbZfRjEQ%2BCRgBXV0ejH%2BCgA6t8WE5iIWKcSeuDO9rGVFiCKueSTiJjvG2ggiHG7LwAs4WbuJmDJdZb56j9hO8aZWtuCyevz3x/oF%2By3zHZLcvw%3D%3D" -O cvd-host_package.tar.gz
+      - name: Create release and upload assets
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: assets
+          files: |
+            *.gz
