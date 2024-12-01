@@ -9,15 +9,37 @@ jobs:
   test:
     runs-on: windows-latest
 
-    steps:
-      - name: Test
-        run: |
-          git clone https://github.com/cppp-project/cppp-reiconv --depth 1 -b dev
-          cd cppp-reiconv
-          git clone https://github.com/cppp-project/build-aux --depth 1
-          mkdir build
-          cd build
-          cmake .. -DBUILD_TESTING=ON
-          cmake --build . --config=Release
-          ctest -C Release --verbose
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+         - { sys: MINGW64, prefix: mingw-w64-x86_64- }
+         - { sys: MINGW32, prefix: mingw-w64-i686- }
+         - { sys: UCRT64, prefix: mingw-w64-ucrt-x86_64- }
+         - { sys: CLANG64, prefix: mingw-w64-clang-x86_64- }
+         - { sys: CLANG32, prefix: mingw-w64-clang-i686- }
 
+    defaults:
+      run:
+        shell: msys2 {0}
+
+    steps:
+
+    - uses: msys2/setup-msys2@v2
+      with:
+        msystem: ${{ matrix.sys }}
+        update: true
+        install: >-
+          git
+          ${{ matrix.prefix }}toolchain
+          ${{ matrix.prefix }}cmake
+
+    - run: |
+       git clone https://github.com/cppp-project/cppp-reiconv --depth 1 -b dev
+       cd cppp-reiconv
+       git clone https://github.com/cppp-project/build-aux --depth 1
+       mkdir build
+       cd build
+       cmake .. -DBUILD_TESTING=ON
+       cmake --build . --config=Release
+       ctest -C Release --verbose
