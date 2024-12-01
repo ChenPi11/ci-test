@@ -10,20 +10,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-
     - name: Tests
-        uses: vmactions/freebsd-vm@v1
-        with:
-          usesh: true
-          mem: 4096
-          copyback: false
-          prepare: pkg install -y git cmake gmake llvm
-          run: |
-            git clone https://github.com/cppp-project/cppp-reiconv --depth 1 -b dev
-            cd cppp-reiconv
-            git clone https://github.com/cppp-project/build-aux --depth 1
-            mkdir build
-            cd build
-            cmake .. -DBUILD_TESTING=ON
-            cmake --build . --config=Release
-            ctest -C Release --verbose
+      uses: vmactions/freebsd-vm@v1
+      with:
+        usesh: true
+        mem: 4096
+        copyback: false
+        prepare: pkg install -y git cmake gmake llvm
+        run: |
+          git clone https://github.com/cppp-project/cppp-reiconv --depth 1 -b dev
+          cd cppp-reiconv
+          git clone https://github.com/cppp-project/build-aux --depth 1
+          mkdir build
+          cd build
+          cmake .. -DBUILD_TESTING=ON
+          cmake --build . --config=Release
+          ctest -C Release --verbose
