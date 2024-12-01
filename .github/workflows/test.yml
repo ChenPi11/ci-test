@@ -38,7 +38,7 @@ jobs:
         install: >-
           git
           cmake
-          ninja
+          make
           clang
       if: matrix.sys == 'MSYS'
 
