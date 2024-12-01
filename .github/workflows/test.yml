@@ -13,4 +13,7 @@ jobs:
       uses: ChenPi11/rubisco@main
     - name: Run Rubisco
       run: |
-        rubisco --version
+        git clone https://github.com/cppp-project/cppp-reiconv --depth 1 -b dev
+        cd cppp-reiconv
+        git clone https://github.com/cppp-project/build-aux --depth 1
+        ru test
