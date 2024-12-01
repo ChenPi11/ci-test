@@ -13,11 +13,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
-         - { sys: MINGW64, prefix: mingw-w64-x86_64- }
-         - { sys: MINGW32, prefix: mingw-w64-i686- }
-         - { sys: UCRT64, prefix: mingw-w64-ucrt-x86_64- }
-         - { sys: CLANG64, prefix: mingw-w64-clang-x86_64- }
-         - { sys: CLANG32, prefix: mingw-w64-clang-i686- }
+         - { sys: MSYS, prefix: none}
 
     defaults:
       run:
@@ -33,6 +29,18 @@ jobs:
           git
           ${{ matrix.prefix }}toolchain
           ${{ matrix.prefix }}cmake
+      if: matrix.sys != 'MSYS'
+
+    - uses: msys2/setup-msys2@v2
+      with:
+        msystem: ${{ matrix.sys }}
+        update: true
+        install: >-
+          git
+          cmake
+          ninja
+          clang
+      if: matrix.sys == 'MSYS'
 
     - run: |
        git clone https://github.com/cppp-project/cppp-reiconv --depth 1 -b dev
