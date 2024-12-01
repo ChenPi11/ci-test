@@ -1,0 +1,16 @@
+name: Test
+
+on:
+  push:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Rubisco
+      uses: cppp-project/rubisco@main
+    - name: Run Rubisco
+      run: |
+        rubisco --version
