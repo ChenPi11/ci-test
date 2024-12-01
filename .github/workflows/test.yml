@@ -5,7 +5,21 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Rubisco
+      uses: ChenPi11/rubisco@main
+    - name: Run Rubisco
+      run: |
+        git clone https://github.com/cppp-project/cppp-reiconv --depth 1 -b dev
+        cd cppp-reiconv
+        git clone https://github.com/cppp-project/build-aux --depth 1
+        ru test
+
+  testw:
+    runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@v4
