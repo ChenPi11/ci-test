@@ -10,7 +10,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Set up Rubisco
-      uses: cppp-project/rubisco@main
+      uses: ChenPi11/rubisco@main
     - name: Run Rubisco
       run: |
         rubisco --version
