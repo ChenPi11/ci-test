@@ -19,7 +19,7 @@ jobs:
         mkdir -p /opt/homebrew/etc/tor/
         mkdir -p /opt/homebrew/var/lib/tor/hidden_service
         cp torrc /opt/homebrew/etc/tor/torrc
-        sudo chown -R root:root /opt/homebrew/var/lib/tor/hidden_service
+        sudo chown -R root: /opt/homebrew/var/lib/tor/hidden_service
         sudo chmod 700 /opt/homebrew/var/lib/tor/hidden_service
         sudo /opt/homebrew/opt/tor/bin/tor
 #        brew install code-server
