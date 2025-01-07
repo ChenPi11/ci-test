@@ -68,10 +68,9 @@
 ## HiddenServicePort x y:z says to redirect requests on port x to the
 ## address y:z.
 
-HiddenServiceDir /var/lib/tor/hidden_service/
+HiddenServiceDir /opt/homebrew/var/lib/tor/hidden_service
 HiddenServicePort 80 127.0.0.1:8080
 
-#HiddenServiceDir /var/lib/tor/other_hidden_service/
 #HiddenServicePort 80 127.0.0.1:80
 #HiddenServicePort 22 127.0.0.1:22
 
