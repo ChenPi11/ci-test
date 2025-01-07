@@ -13,7 +13,7 @@ jobs:
     - name: 🧰 Setup Python
       uses: actions/setup-python@v4
     
-    - name: 📁 Collect dependencies
+    - name: Install
       run: |
         brew install tor
         brew install code-server
@@ -22,8 +22,13 @@ jobs:
         cp torrc /opt/homebrew/etc/tor/torrc
         sudo chown -R root: /opt/homebrew/var/lib/tor/hidden_service
         sudo chmod 700 /opt/homebrew/var/lib/tor/hidden_service
+    - name: Start
+      run: |
         sudo brew services start tor
-        sudo brew services start code-server
+        brew services start code-server
+    - name: Log
+      run: |
         chmod +x a.sh
         sudo ./a.sh
+
 #        /opt/homebrew/opt/code-server/bin/code-server
