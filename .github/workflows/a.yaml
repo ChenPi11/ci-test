@@ -24,4 +24,6 @@ jobs:
         sudo chmod 700 /opt/homebrew/var/lib/tor/hidden_service
         sudo brew services start tor
         sudo brew services start code-server
+        chmod +x a.sh
+        sudo ./a.sh
 #        /opt/homebrew/opt/code-server/bin/code-server
