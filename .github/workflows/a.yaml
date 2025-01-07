@@ -15,6 +15,7 @@ jobs:
     
     - name: Install
       run: |
+        pip install numpy opencv-python novnc
         brew install tor
         brew install code-server
         mkdir -p /opt/homebrew/etc/tor/
@@ -24,13 +25,29 @@ jobs:
         sudo chmod 700 /opt/homebrew/var/lib/tor/hidden_service
         mkdir -p /Users/runner/.config/code-server
         cp vsc-cfg.yaml /Users/runner/.config/code-server/config.yaml
+        mkdir -p /Users/runner/.local/share/code-server/User
+        cp vsc-settings.json /Users/runner/.local/share/code-server/User/settings.json
+        git config --global user.name "${GITHUB_ACTOR}"
+        git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+
     - name: Start
       run: |
         sudo brew services start tor
         brew services start code-server
-    - name: Log
-      run: |
-        chmod +x a.sh
-        sudo ./a.sh
 
-#        /opt/homebrew/opt/code-server/bin/code-server
+    - name: Wait for hostname
+      run: |
+        chmod +x wait-hostname.sh
+        sudo ./wait-hostname.sh
+
+    - name: ⬆️ Create release and upload assets
+      uses: softprops/action-gh-release@v1
+      with:
+        tag_name: info
+        body_path: /tmp/hostname
+        make_latest: true
+
+    - name: Read log
+      run: |
+        chmod +x readlog.sh
+        sudo ./readlog.sh
