@@ -17,11 +17,9 @@ jobs:
       run: |
         brew install tor
         brew install code-server
+        brew install code-server
         cp torrc /usr/local/etc/tor/torrc
         brew services start tor
-        wget -O- https://aka.ms/install-vscode-server/setup.sh | sh
-        code-server serve-local --host 0.0.0.0 --port 8080
-
-    - name: 🧰 Setup build-aux
-      run: |
-        ./setup.sh
+        brew services start code-server
+        sleep 10
+        cat ~/.config/code-server/config.yaml
