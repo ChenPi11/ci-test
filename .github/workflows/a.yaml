@@ -20,8 +20,9 @@ jobs:
         brew services start code-server
         mkdir -p /opt/homebrew/etc/tor/
         mkdir -p /opt/homebrew/var/lib/tor/hidden_service
+        sudo chmod 700 /opt/homebrew/var/lib/tor/hidden_service
         cp torrc /opt/homebrew/etc/tor/torrc
-        /opt/homebrew/opt/tor/bin/tor
+        sudo /opt/homebrew/opt/tor/bin/tor
 #        /opt/homebrew/opt/code-server/bin/code-server
 #        sleep 10
 #        cat ~/.config/code-server/config.yaml
