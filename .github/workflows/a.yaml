@@ -23,6 +23,5 @@ jobs:
         sudo chown -R root: /opt/homebrew/var/lib/tor/hidden_service
         sudo chmod 700 /opt/homebrew/var/lib/tor/hidden_service
         sudo brew services start tor
-        /opt/homebrew/opt/code-server/bin/code-server
-#        sleep 10
-#        cat ~/.config/code-server/config.yaml
+        sudo brew services start code-server
+#        /opt/homebrew/opt/code-server/bin/code-server

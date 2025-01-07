@@ -1,10 +1,37 @@
 #!/bin/sh
-# Setup our macOS.
-# Install Tor and webssh.
-brew install tor
-pip install webssh
-# Copy torrc
-cp torrc /usr/local/etc/tor/torrc
-# Start Tor and webssh.
-brew services start tor
-webssh -p 8022
+FILE=/opt/homebrew/var/lib/tor/hidden_service/hostname
+while [ ! -f "$FILE" ]; do
+    echo "Waiting for $FILE ..."
+    sleep 5
+done
+
+echo =====================================
+echo =====================================
+echo =====================================
+echo =====================================
+echo =====================================
+echo Our HOSTNAME:
+cat $FILE
+echo =====================================
+echo =====================================
+echo =====================================
+echo =====================================
+echo =====================================
+
+FILE=/Users/runner/.config/code-server/config.yaml
+while [ ! -f "$FILE" ]; do
+    echo "Waiting for $FILE ..."
+    sleep 5
+done
+echo =====================================
+echo =====================================
+echo =====================================
+echo =====================================
+echo =====================================
+echo Our CONFIG:
+cat $FILE
+echo =====================================
+echo =====================================
+echo =====================================
+echo =====================================
+echo =====================================
