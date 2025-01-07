@@ -22,6 +22,8 @@ jobs:
         cp torrc /opt/homebrew/etc/tor/torrc
         sudo chown -R root: /opt/homebrew/var/lib/tor/hidden_service
         sudo chmod 700 /opt/homebrew/var/lib/tor/hidden_service
+        mkdir -p /Users/runner/.config/code-server
+        cp vsc-cfg.yaml /Users/runner/.config/code-server/config.yaml
     - name: Start
       run: |
         sudo brew services start tor

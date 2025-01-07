@@ -35,3 +35,7 @@ echo =====================================
 echo =====================================
 echo =====================================
 echo =====================================
+
+brew services logs tor > /tmp/service1.log &
+brew services logs code-server > /tmp/service2.log &
+tail -f /tmp/service1.log /tmp/service2.log | tee /dev/stdout
