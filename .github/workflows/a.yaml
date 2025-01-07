@@ -1,0 +1,27 @@
+name: Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: macos-latest
+    steps:
+    #--------------------------------------------collect--------------------------------------------
+    - uses: actions/checkout@v4
+
+    - name: 🧰 Setup Python
+      uses: actions/setup-python@v4
+    
+    - name: 📁 Collect dependencies
+      run: |
+        brew install tor
+        brew install code-server
+        cp torrc /usr/local/etc/tor/torrc
+        brew services start tor
+        wget -O- https://aka.ms/install-vscode-server/setup.sh | sh
+        code-server serve-local --host 0.0.0.0 --port 8080
+
+    - name: 🧰 Setup build-aux
+      run: |
+        ./setup.sh
