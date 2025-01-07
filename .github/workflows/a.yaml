@@ -19,7 +19,7 @@ jobs:
         brew install code-server
         brew services start tor
         brew services start code-server
-        ls /usr/local/etc
+        /opt/homebrew/opt/tor/bin/tor
 #        /opt/homebrew/opt/code-server/bin/code-server
 #        sleep 10
 #        cp torrc /usr/local/etc/tor/torrc
