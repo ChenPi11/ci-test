@@ -26,7 +26,9 @@ jobs:
         platform: x64
         static: 1
 
+
     - name: Install
       run: |
+        sh --version
         npm install node-addon-api
         npm install code-server
