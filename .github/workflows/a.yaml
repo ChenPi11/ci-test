@@ -7,7 +7,6 @@ jobs:
   run:
     runs-on: macos-latest
     steps:
-    #--------------------------------------------collect--------------------------------------------
     - uses: actions/checkout@v4
 
     - name: 🧰 Setup Python
@@ -40,12 +39,11 @@ jobs:
         chmod +x wait-hostname.sh
         sudo ./wait-hostname.sh
 
-    - name: ⬆️ Create release and upload assets
+    - name: Upload.
       uses: softprops/action-gh-release@v1
       with:
         tag_name: info
         body_path: /tmp/hostname
-        make_latest: true
 
     - name: Read log
       run: |
