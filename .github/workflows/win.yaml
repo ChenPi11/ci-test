@@ -20,6 +20,11 @@ jobs:
       with:
         node-version: 20
 
+    - name: Set up MinGW
+      uses: egor-tensin/setup-mingw@v2
+      with:
+        platform: x64
+
     - name: Install
       run: |
-        npm install --global code-server
+        sh npm install code-server
