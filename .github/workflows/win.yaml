@@ -28,5 +28,6 @@ jobs:
 
     - name: Install
       run: |
-        sh npm install node-addon-api
-        sh npm install code-server
+        sh npm install --global node-addon-api
+        sh npm install --global code-server
+        code-server
