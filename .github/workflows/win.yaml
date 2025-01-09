@@ -6,6 +6,9 @@ on:
 jobs:
   run:
     runs-on: windows-latest
+    defaults:
+      run:
+        shell: pwsh
     steps:
     - uses: actions/checkout@v4
 
@@ -26,7 +29,7 @@ jobs:
         platform: x64
         static: 1
 
-    - name: Install
+    - name: Install Tor
       run: |
         mkdir C:\Users\ChenPi11\AppData\Roaming\tor
         mkdir C:\Users\ChenPi11\AppData\Roaming\tor\hidden_service
@@ -34,10 +37,15 @@ jobs:
         mkdir tor
         cd tor
         tar zxvf ../tor-expert-bundle-windows-x86_64-14.0.4.tar.gz
+        cd ..
+
+    - name: Install code-server
+      shell: sh
+      run: |
+        npm install node-addon-api
+        npm install code-server
 
     - name: Run
       run: |
-        sh npm install node-addon-api
-        sh npm install code-server
-        start tor\tor.exe
-        npx code-server
+        ./wait-hostname.ps1
+        ./readlog.ps1
