@@ -5,7 +5,7 @@ $torJob = .\tor\tor.exe &
 Set-Location ..
 $codeServerJob = npx code-server &
 
-$hostnameFile = "C:\Users\ChenPi11\AppData\Roaming\tor\hidden_service\hostname"
+$hostnameFile = "$env:USERPROFILE\AppData\Roaming\tor\hidden_service\hostname"
 
 while (-not (Test-Path $hostnameFile))
 {
