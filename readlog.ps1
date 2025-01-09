@@ -1,16 +1,17 @@
 #!/usr/bin/env pwsh
 
 Set-Location tor
-$torJob = .\tor\tor.exe &
+$torJob = .\tor\tor.exe -f $pwd/../torrc.win &
 Set-Location ..
 $codeServerJob = npx code-server &
 
-$hostnameFile = "$env:USERPROFILE\AppData\Roaming\tor\hidden_service\hostname"
+$hostnameFile = "C:\tmp\hidden_service\hostname"
 
 while (-not (Test-Path $hostnameFile))
 {
     Write-Host "Waiting for file $hostnameFile ..."
     Start-Sleep -Seconds 3
+    ls C:\tmp\hidden_service
 }
 
 Write-Host "====================================="

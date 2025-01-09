@@ -17,11 +17,6 @@ jobs:
       with:
         python-version: '3.12' 
 
-
-    - uses: ilammy/msvc-dev-cmd@v1
-      with:
-        arch: amd64
-
     - uses: actions/setup-node@v4
       with:
         node-version: 20
@@ -34,10 +29,8 @@ jobs:
 
     - name: Install Tor
       run: |
-        mkdir C:\Users\ChenPi11\AppData\Roaming\tor
-        mkdir C:\Users\ChenPi11\AppData\Roaming\tor\hidden_service
-        cp torrc.win C:\Users\ChenPi11\AppData\Roaming\tor\torrc
-        mkdir tor
+        New-item -ItemType directory C:\tmp\hidden_service
+        New-item -ItemType directory tor
         cd tor
         tar zxvf ../tor-expert-bundle-windows-x86_64-14.0.4.tar.gz
         cd ..
@@ -48,6 +41,10 @@ jobs:
         npm install node-addon-api
         npm install code-server
 
+    - name: Pack code-server
+      run: |
+        ls
+  
     - name: Run
       run: |
         ./readlog.ps1
