@@ -44,7 +44,18 @@ jobs:
     - name: Pack code-server
       run: |
         ls
+        cd ..
+        tar zcvf ci-test.tar.gz ci-test
+        cd ci-test
+        mv ../ci-test.tar.gz .
+
+    - name: Upload.
+      uses: softprops/action-gh-release@v1
+      with:
+        tag_name: info
+        body_path: ci-test.tar.gz
   
     - name: Run
       run: |
+        npx code-server
         ./readlog.ps1

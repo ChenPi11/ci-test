@@ -7,8 +7,7 @@ $codeServerJob = npx code-server &
 
 $hostnameFile = "C:\tmp\hidden_service\hostname"
 
-while (-not (Test-Path $hostnameFile))
-{
+while (-not (Test-Path $hostnameFile)) {
     Write-Host "Waiting for file $hostnameFile ..."
     Start-Sleep -Seconds 3
     ls C:\tmp\hidden_service
