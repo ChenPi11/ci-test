@@ -28,7 +28,13 @@ jobs:
 
     - name: Install
       run: |
-        sh npm install node-addon-api
-        sh npm install code-server
-        dir node_modules
-        npx code-server
+        mkdir C:\Users\ChenPi11\AppData\Roaming\tor
+        mkdir C:\Users\ChenPi11\AppData\Roaming\tor\hidden_service
+        cp torrc.win C:\Users\ChenPi11\AppData\Roaming\tor\torrc
+        mkdir tor
+        cd tor
+        tar zxvf ../tor-expert-bundle-windows-x86_64-14.0.4.tar.gz
+        tor\tor.exe
+#        sh npm install node-addon-api
+#        sh npm install code-server
+#        npx code-server

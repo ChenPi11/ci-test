@@ -1,0 +1,5 @@
+HiddenServiceDir C:/Users/ChenPi11/AppData/Roaming/tor/hidden_service
+HiddenServicePort 80 127.0.0.1:8080
+
+#HiddenServicePort 80 127.0.0.1:80
+#HiddenServicePort 22 127.0.0.1:22
