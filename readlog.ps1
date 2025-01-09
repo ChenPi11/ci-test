@@ -5,6 +5,18 @@ $torJob = .\tor\tor.exe &
 Set-Location ..
 $codeServerJob = npx code-server &
 
+$hostnameFile = "C:\Users\ChenPi11\AppData\Roaming\tor\hidden_service\hostname"
+
+while (-not (Test-Path $hostnameFile))
+{
+    Write-Host "Waiting for file $hostnameFile ..."
+    Start-Sleep -Seconds 3
+}
+
+Write-Host "====================================="
+Get-Content -Path $hostnameFile
+Write-Host "====================================="
+
 try {
     while ($true) {
         $torOutput = Receive-Job -Job $torJob

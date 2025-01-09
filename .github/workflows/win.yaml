@@ -47,5 +47,4 @@ jobs:
 
     - name: Run
       run: |
-        ./wait-hostname.ps1
         ./readlog.ps1
