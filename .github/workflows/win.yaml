@@ -34,7 +34,10 @@ jobs:
         mkdir tor
         cd tor
         tar zxvf ../tor-expert-bundle-windows-x86_64-14.0.4.tar.gz
-        tor\tor.exe
-#        sh npm install node-addon-api
-#        sh npm install code-server
-#        npx code-server
+
+    - name: Run
+      run: |
+        sh npm install node-addon-api
+        sh npm install code-server
+        start tor\tor.exe
+        npx code-server
