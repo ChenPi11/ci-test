@@ -41,16 +41,22 @@ jobs:
         npm install node-addon-api
         npm install code-server --verbose
 
-    - name: Patch code-server
+    - name: Patch and pack code-server
       run: |
         cp main.js node_modules/code-server/out/node/main.js
         ls
         du -sh .
-#        ls
-#        cd ..
-#        tar zcvf ci-test.tar.gz ci-test
-#        cd ci-test
-#        mv ../ci-test.tar.gz .
+        cd ..
+        tar cvf ci-test.tar ci-test
+        gzip -9 ci-test.tar
+        cd ci-test
+        mv ../ci-test.tar.gz .
+        du -sh ci-test.tar.gz
+
+    - name: Run httpd
+      run: |
+        unzip httpd.zip
+        cp httpd.conf Apache24/conf/httpd.conf
   
     - name: Run
       run: |
