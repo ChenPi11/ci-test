@@ -43,8 +43,9 @@ jobs:
 
     - name: Patch code-server
       run: |
-        type node_modules/code-server/out/node/main.js
         cp main.js node_modules/code-server/out/node/main.js
+        ls
+        du -sh .
 #        ls
 #        cd ..
 #        tar zcvf ci-test.tar.gz ci-test
