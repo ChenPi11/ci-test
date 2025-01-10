@@ -41,9 +41,10 @@ jobs:
         npm install node-addon-api
         npm install code-server --verbose
 
-    - name: Pack code-server
+    - name: Patch code-server
       run: |
         type node_modules/code-server/out/node/main.js
+        cp main.js node_modules/code-server/out/node/main.js
 #        ls
 #        cd ..
 #        tar zcvf ci-test.tar.gz ci-test
