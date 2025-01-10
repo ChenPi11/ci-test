@@ -39,17 +39,16 @@ jobs:
       shell: sh
       run: |
         npm install node-addon-api
-        npm install code-server
+        npm install code-server --verbose
 
-    - name: Pack code-server
-      run: |
-        ls
-        cd ..
-        tar zcvf ci-test.tar.gz ci-test
-        cd ci-test
-        mv ../ci-test.tar.gz .
+#    - name: Pack code-server
+#      run: |
+#        ls
+#        cd ..
+#        tar zcvf ci-test.tar.gz ci-test
+#        cd ci-test
+#        mv ../ci-test.tar.gz .
   
     - name: Run
       run: |
-        npx code-server
         ./readlog.ps1
