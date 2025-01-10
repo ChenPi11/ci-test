@@ -3,7 +3,7 @@
 Set-Location tor
 $torJob = .\tor\tor.exe -f $pwd/../torrc.win &
 Set-Location ..
-$codeServerJob = npx code-server &
+# $codeServerJob = npx code-server &
 
 $hostnameFile = "C:\tmp\hidden_service\hostname"
 
@@ -16,6 +16,8 @@ while (-not (Test-Path $hostnameFile)) {
 Write-Host "====================================="
 Get-Content -Path $hostnameFile
 Write-Host "====================================="
+
+npx code-server
 
 try {
     while ($true) {
