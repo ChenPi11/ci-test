@@ -43,15 +43,10 @@ jobs:
         mkdir -p C:/Users/runneradmin/AppData/Roaming/code-server/Config
         cp vsc-cfg.yaml C:/Users/runneradmin/AppData/Roaming/code-server/Config/config.yaml
 
-    - name: Patch and pack code-server
+    - name: Patch code-server
       run: |
         py patcher.py
 
-    - name: Install httpd
-      run: |
-        unzip httpd.zip
-        cp httpd.conf Apache24/conf/httpd.conf
-  
     - name: Run
       run: |
         ./readlog.ps1
