@@ -12,15 +12,20 @@ let modPath = path.join(constants_1.vsRootPath, "out/server-main.js");
 
 # Walk node_modules recursively.
 import os
+import locale
+
+def locale_charset():
+    return locale.getlocale()[1]
+    
 
 for root, dirs, files in os.walk("node_modules"):
     for file in files:
         if file.endswith(".js"):
             file_path = os.path.join(root, file)
-            with open(file_path, "r") as f:
+            with open(file_path, "r", encoding=locale_charset()) as f:
                 contents = f.read()
                 if from_str in contents:
                     print(f"Patching {file_path}")
                     contents = contents.replace(from_str, to_str)
-                    with open(file_path, "w") as f:
+                    with open(file_path, "w", encoding=locale_charset()) as f:
                         f.write(contents)
