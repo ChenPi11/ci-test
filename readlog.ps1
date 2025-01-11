@@ -3,21 +3,18 @@
 Set-Location tor
 $torJob = .\tor\tor.exe -f $pwd/../torrc.win &
 Set-Location ..
-# $codeServerJob = npx code-server &
+$codeServerJob = npx code-server &
 
-$hostnameFile = "C:\tmp\hidden_service\hostname"
+$hostnameFile = "D:\tmp\hidden_service\hostname"
 
 while (-not (Test-Path $hostnameFile)) {
     Write-Host "Waiting for file $hostnameFile ..."
     Start-Sleep -Seconds 3
-    ls C:\tmp\hidden_service
 }
 
 Write-Host "====================================="
 Get-Content -Path $hostnameFile
 Write-Host "====================================="
-
-npx code-server
 
 try {
     while ($true) {
@@ -36,11 +33,13 @@ try {
         }
 
         if ($torJob.State -eq 'Completed' -and $codeServerJob.State -eq 'Completed') {
+            echo "BREAK!"
             break
         }
 
-        Start-Sleep -Seconds 5
+        Start-Sleep -Seconds 1
     }
+    echo "EXIT!!!"
 }
 finally {
     Write-Host "========================== exit =========================="
