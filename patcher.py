@@ -15,7 +15,8 @@ import os
 import locale
 
 def locale_charset():
-    return locale.getlocale()[1]
+    return "UTF-8"
+    #return locale.getlocale()[1]
     
 
 for root, dirs, files in os.walk("node_modules"):
