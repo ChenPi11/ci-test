@@ -40,6 +40,8 @@ jobs:
       run: |
         npm install node-addon-api
         npm install code-server --verbose
+        mkdir -p C:/Users/runneradmin/AppData/Roaming/code-server/Config
+        cp vsc-cfg.yaml C:/Users/runneradmin/AppData/Roaming/code-server/Config/config.yaml
 
     - name: Patch and pack code-server
       run: |
