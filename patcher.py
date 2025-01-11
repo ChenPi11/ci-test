@@ -6,7 +6,7 @@ to_str = \
 let modPath = path.join(constants_1.vsRootPath, "out/server-main.js");
         if (os.platform() === "win32") {
             // On Windows, absolute paths of ESM modules must be a valid file URI.
-            modPath = "file:///" + modPath.replace(/\\/g, "/")
+            modPath = "file:///" + modPath.replace(/\\\\/g, "/")
             console.log(modPath);
           }"""
 
