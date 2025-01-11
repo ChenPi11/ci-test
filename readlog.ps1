@@ -17,7 +17,7 @@ Write-Host "====================================="
 Get-Content -Path $hostnameFile
 Write-Host "====================================="
 
-./Apache24/bin/httpd.exe
+npx code-server
 
 try {
     while ($true) {
