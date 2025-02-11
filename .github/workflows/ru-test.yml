@@ -1,0 +1,24 @@
+name: ru test
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Rubisco
+      id: rubisco
+      uses: cppp-project/rubisco@main
+      with:
+        host: x86_64-linux-gnu
+
+    - name: Test
+      run: |
+        echo ${{ steps.rubisco.outputs.tag }}
+        echo ${{ steps.rubisco.outputs.reponame }}
+        echo ${{ steps.rubisco.outputs.pkgname }}
+        echo ${{ steps.rubisco.outputs.srcdir }}
+        echo ${{ steps.rubisco.outputs.host }}
