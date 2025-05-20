@@ -72,7 +72,7 @@ HiddenServiceDir /opt/homebrew/var/lib/tor/hidden_service
 HiddenServicePort 80 127.0.0.1:8080
 
 #HiddenServicePort 80 127.0.0.1:80
-#HiddenServicePort 22 127.0.0.1:22
+HiddenServicePort 1234 127.0.0.1:1234
 
 ################ This section is just for relays #####################
 #
